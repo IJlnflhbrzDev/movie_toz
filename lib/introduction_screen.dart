@@ -16,7 +16,7 @@ class IntroductionScreenMovies extends StatelessWidget {
       showNextButton: true,
       showBackButton: false,
       showSkipButton: true,
-      dotsFlex: 5,
+    dotsFlex: 5,
       next: const Icon(
         Icons.arrow_forward,
         color: cWhiteColor,
