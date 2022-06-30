@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:movie_toz/pages/most_popular.dart';
 import 'package:movie_toz/theme.dart';
 
@@ -11,7 +10,14 @@ class CardTexts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(MostPopular()),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return MostPopular();
+          },
+        ),
+      ),
       child: Container(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
         margin: const EdgeInsets.only(top: 38),

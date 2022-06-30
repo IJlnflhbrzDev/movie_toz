@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:movie_toz/pages/home.dart';
 import 'package:movie_toz/theme.dart';
 import 'package:flutter/material.dart';
@@ -126,7 +125,14 @@ class FormLogin extends StatelessWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Login  Success')),
                   );
-                  Get.to(Home());
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Home();
+                      },
+                    ),
+                  );
                 }
               },
               child: Text(

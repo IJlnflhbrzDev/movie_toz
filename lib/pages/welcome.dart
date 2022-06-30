@@ -38,7 +38,14 @@ class Welcome extends StatelessWidget {
                       //     context,
                       //     MaterialPageRoute(
                       //         builder: (BuildContext context) => const Login()));
-                      Get.to(Login());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return WidgetScreen();
+                          },
+                        ),
+                      );
                     },
                     child: Text(
                       'GET STARTED',

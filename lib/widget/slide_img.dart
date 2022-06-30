@@ -7,7 +7,6 @@ import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:movie_toz/pages/detail.dart';
-import 'package:movie_toz/theme.dart';
 
 class SlideImage extends StatefulWidget {
   const SlideImage({Key? key}) : super(key: key);
@@ -74,6 +73,16 @@ class _SlideImageState extends State<SlideImage> {
                                   Get.to(
                                     DetailPage(
                                       idMovie: item['id'],
+                                    ),
+                                  );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return DetailPage(
+                                          idMovie: item['id'],
+                                        );
+                                      },
                                     ),
                                   );
                                 },

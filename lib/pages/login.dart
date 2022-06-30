@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movie_toz/theme.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:movie_toz/widget/form_login.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
-  _launchURL() async {
-    const url = 'https://wa.link/x3uvig';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,27 +69,6 @@ class Login extends StatelessWidget {
                   // NOTE: FormLogin
                   const SizedBox(height: 10),
                   const FormLogin(),
-                  const SizedBox(height: 50),
-                  Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Don\'t have login access?',
-                          style: cGreyTextStyle.copyWith(fontSize: 18),
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              _launchURL();
-                            },
-                            child: const Text(
-                              'Request access',
-                              style: TextStyle(fontSize: 17),
-                            ))
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 50),
                 ],
               ),
             ),

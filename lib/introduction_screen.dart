@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:movie_toz/pages/welcome.dart';
 import 'package:movie_toz/theme.dart';
@@ -16,7 +15,7 @@ class IntroductionScreenMovies extends StatelessWidget {
       showNextButton: true,
       showBackButton: false,
       showSkipButton: true,
-    dotsFlex: 5,
+      dotsFlex: 5,
       next: const Icon(
         Icons.arrow_forward,
         color: cWhiteColor,
@@ -27,7 +26,15 @@ class IntroductionScreenMovies extends StatelessWidget {
         color: cWhiteColor,
       ),
       onDone: () {
-        Get.to(Welcome());
+        // Get.to(Welcome());
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return Welcome();
+            },
+          ),
+        );
       },
       pages: [
         PageViewModel(

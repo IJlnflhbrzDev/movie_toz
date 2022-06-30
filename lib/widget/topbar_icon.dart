@@ -1,7 +1,6 @@
 // ignore_for_file: dead_code
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class TopBarIcons extends StatefulWidget {
   const TopBarIcons({Key? key}) : super(key: key);

@@ -64,9 +64,14 @@ class UpcommingMovieUI extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: () {
-                  Get.to(
-                    DetailPage(
-                      idMovie: allDataMovieDb[index].id,
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return DetailPage(
+                          idMovie: allDataMovieDb[index].id,
+                        );
+                      },
                     ),
                   );
                 },

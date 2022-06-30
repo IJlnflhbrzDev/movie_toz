@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_toz/theme.dart';
 import 'package:movie_toz/widget/PopularMovieUI.dart';
-import 'package:movie_toz/widget/slide_img.dart';
 
 class MostPopular extends StatelessWidget {
   const MostPopular({Key? key}) : super(key: key);
