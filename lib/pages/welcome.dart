@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:movie_toz/pages/login.dart';
 import 'package:movie_toz/theme.dart';
 
@@ -34,15 +33,11 @@ class Welcome extends StatelessWidget {
                         primary: Colors.transparent,
                         shadowColor: Colors.transparent),
                     onPressed: () {
-                      // Navigator.pushReplacement(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => const Login()));
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return WidgetScreen();
+                            return Login();
                           },
                         ),
                       );

@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable, avoid_print, constant_identifier_names, unnecessary_string_interpolations, unused_local_variable, avoid_function_literals_in_foreach_calls, file_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:movie_toz/model/UpcommingMovieModel.dart';
 // import 'package:movie_toz/pages/detail.dart';
 import 'package:http/http.dart' as http;
