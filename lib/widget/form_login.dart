@@ -2,9 +2,15 @@ import 'package:movie_toz/pages/home.dart';
 import 'package:movie_toz/theme.dart';
 import 'package:flutter/material.dart';
 
-class FormLogin extends StatelessWidget {
+class FormLogin extends StatefulWidget {
   const FormLogin({Key? key}) : super(key: key);
 
+  @override
+  State<FormLogin> createState() => _FormLoginState();
+}
+
+class _FormLoginState extends State<FormLogin> {
+  bool obscureTextInput = true;
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> _formKeyEmail = GlobalKey<FormState>();
@@ -71,16 +77,21 @@ class FormLogin extends StatelessWidget {
               children: <Widget>[
                 TextFormField(
                   style: const TextStyle(color: cWhiteColor),
-                  obscureText: true,
+                  obscureText: obscureTextInput,
                   enableSuggestions: false,
                   initialValue: 'admin123',
                   autocorrect: false,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: InputBorder.none,
-                    suffixIcon: Icon(
-                      Icons.no_encryption_gmailerrorred_outlined,
+                    suffixIcon: IconButton(
+                      iconSize: 18.0,
+                      icon: Icon(Icons.no_encryption_gmailerrorred_outlined),
                       color: cGoldColor,
-                      size: 18,
+                      onPressed: () {
+                        setState(() {
+                          obscureTextInput = !obscureTextInput;
+                        });
+                      },
                     ),
                     hintText: ' Enter your Password',
                     hintStyle: TextStyle(color: cGreyColor),
@@ -107,13 +118,6 @@ class FormLogin extends StatelessWidget {
             height: 47,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
-              // gradient: const LinearGradient(
-              //   colors: [
-              //     // Color.fromARGB(255, 88, 88, 88),
-              //     Color.fromARGB(169, 136, 91, 1),
-              //     Color(0XFFFF722A)
-              //   ],
-              // ),
               color: Color(0xff373f85),
             ),
             child: ElevatedButton(
@@ -132,6 +136,10 @@ class FormLogin extends StatelessWidget {
                         return Home();
                       },
                     ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Login  not Success')),
                   );
                 }
               },

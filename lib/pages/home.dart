@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_toz/theme.dart';
 import 'package:movie_toz/widget/PopularMovieUI.dart';
 import 'package:movie_toz/widget/UpcommingMovieUI.dart';
+import 'package:movie_toz/widget/judul.dart';
 import 'package:movie_toz/widget/slide_img.dart';
 
 class Home extends StatelessWidget {
@@ -43,26 +44,14 @@ class Home extends StatelessWidget {
                 children: <Widget>[
                   const SlideImage(),
                   const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 17, right: 17),
-                    child: Text(
-                      'Most Popular',
-                      style: cWhiteTextStyle.copyWith(fontSize: 22),
-                    ),
-                  ),
+                  Judul(textJudul: 'Most Popular'),
                   const SizedBox(height: 10),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: 330,
                     child: const PopularMovieUI(),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 17, right: 17),
-                    child: Text(
-                      'Upcomming Movies ',
-                      style: cWhiteTextStyle.copyWith(fontSize: 22),
-                    ),
-                  ),
+                  Judul(textJudul: 'Upcomming Movies'),
                   const SizedBox(height: 10),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,

@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:movie_toz/theme.dart';
 import 'package:movie_toz/widget/PopularMovieUI.dart';
 
-class MostPopular extends StatelessWidget {
+class MostPopular extends StatefulWidget {
   const MostPopular({Key? key}) : super(key: key);
 
+  @override
+  State<MostPopular> createState() => _MostPopularState();
+}
+
+class _MostPopularState extends State<MostPopular> {
+  String? judul;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

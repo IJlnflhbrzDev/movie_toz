@@ -8,13 +8,8 @@ import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:movie_toz/pages/detail.dart';
 
-class SlideImage extends StatefulWidget {
+class SlideImage extends StatelessWidget {
   const SlideImage({Key? key}) : super(key: key);
-  @override
-  State<SlideImage> createState() => _SlideImageState();
-}
-
-class _SlideImageState extends State<SlideImage> {
   @override
   Widget build(BuildContext context) {
     const String API_KEY = 'api_key=d0a0a33c182200348218e927adb2d643';

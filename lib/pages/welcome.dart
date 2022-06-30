@@ -11,46 +11,44 @@ class Welcome extends StatelessWidget {
       backgroundColor: cPrimaryColor,
       body: SafeArea(
         child: Center(
-          child: Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(child: Image.asset('assets/splash-screen-logo.png')),
-                Text('WELCOME TO MOVIETOZ!',
-                    style: cWhiteTextStyle.copyWith(fontSize: 30)),
-                Text('Click The Button To Get Started',
-                    style: cGreyTextStyle.copyWith(fontSize: 18)),
-                const SizedBox(height: 50),
-                Container(
-                  width: 330,
-                  height: 47,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Color(0xff373f85),
-                  ),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.transparent,
-                        shadowColor: Colors.transparent),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return Login();
-                          },
-                        ),
-                      );
-                    },
-                    child: Text(
-                      'GET STARTED',
-                      style: cWhiteTextStyle.copyWith(fontSize: 18),
-                    ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(child: Image.asset('assets/splash-screen-logo.png')),
+              Text('WELCOME TO MOVIETOZ!',
+                  style: cWhiteTextStyle.copyWith(fontSize: 30)),
+              Text('Click The Button To Get Started',
+                  style: cGreyTextStyle.copyWith(fontSize: 18)),
+              const SizedBox(height: 50),
+              Container(
+                width: 330,
+                height: 47,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  color: Color(0xff373f85),
+                ),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                      shadowColor: Colors.transparent),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Login();
+                        },
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'GET STARTED',
+                    style: cWhiteTextStyle.copyWith(fontSize: 18),
                   ),
                 ),
-                const SizedBox(height: 50),
-              ],
-            ),
+              ),
+              const SizedBox(height: 50),
+            ],
           ),
         ),
       ),
