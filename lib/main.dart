@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_toz/introduction_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:get/get.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
       title: 'Movietoz',

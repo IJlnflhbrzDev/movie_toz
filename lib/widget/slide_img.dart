@@ -65,19 +65,9 @@ class SlideImage extends StatelessWidget {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  // Get.to(
-                                  //   DetailPage(
-                                  //     idMovie: item['id'],
-                                  //   ),
-                                  // );
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return DetailPage(
-                                          idMovie: item['id'],
-                                        );
-                                      },
+                                  Get.to(
+                                    DetailPage(
+                                      idMovie: item['id'],
                                     ),
                                   );
                                 },
