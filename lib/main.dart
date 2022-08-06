@@ -1,25 +1,30 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_toz/introduction_screen.dart';
 import 'package:flutter/gestures.dart';
+import 'package:movie_toz/auth_gate.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:get/get.dart';
 
-
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      // options: DefaultFirebaseOptions.currentPlatform,
+      );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
       title: 'Movietoz',
-      home: IntroductionScreenMovies(),
+      home: AuthGate(),
       builder: (context, child) => ResponsiveWrapper.builder(
         child,
         maxWidth: 1200,

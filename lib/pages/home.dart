@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_toz/theme.dart';
 import 'package:movie_toz/widget/PopularMovieUI.dart';
 import 'package:movie_toz/widget/UpcommingMovieUI.dart';
@@ -6,9 +7,13 @@ import 'package:movie_toz/widget/judul.dart';
 import 'package:movie_toz/widget/slide_img.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key, this.email}) : super(key: key);
+  final String? email;
   @override
   Widget build(BuildContext context) {
+    var users = FirebaseAuth.instance.currentUser;
+    print(users);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: cNavColor,
@@ -16,9 +21,9 @@ class Home extends StatelessWidget {
           icon: const Icon(Icons.menu),
           onPressed: () {},
         ),
-        title: const Center(
+        title: Center(
           child: Text(
-            'MOVIE TOZ',
+            'MOVIE TOZ, $email',
           ),
         ),
         actions: <Widget>[
@@ -37,6 +42,10 @@ class Home extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
+              ElevatedButton(
+                onPressed: _signOut,
+                child: Text('Sign Out'),
+              ),
               Container(
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -64,5 +73,9 @@ class Home extends StatelessWidget {
             ],
           )),
     );
+  }
+
+  Future<void> _signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 }

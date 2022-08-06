@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie_toz/pages/home.dart';
 import 'package:movie_toz/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +12,8 @@ class FormLogin extends StatefulWidget {
 class _FormLoginState extends State<FormLogin> {
   // Controller TextField
   bool obscureTextInput = true;
-  final emailController = TextEditingController(text: 'admin@gmail.com');
-  final passwordController = TextEditingController(text: 'admin123');
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -26,105 +25,116 @@ class _FormLoginState extends State<FormLogin> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Email', style: cWhiteTextStyle.copyWith(fontSize: 18)),
-        const SizedBox(height: 10),
-        Container(
-          decoration: BoxDecoration(
-            color: cBoxColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              TextFormField(
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                style: const TextStyle(color: cWhiteColor),
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon:
-                      Icon(Icons.email_outlined, color: cGoldColor, size: 18),
-                  hintText: ' ijlnflhbrz@gmail.com',
-                  hintStyle: TextStyle(color: cGreyColor),
-                  contentPadding: EdgeInsets.all(15),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 22),
-        // Note : this is input type passowrd
-        Text('Password', style: cWhiteTextStyle.copyWith(fontSize: 18)),
-        const SizedBox(height: 10),
-
-        Container(
-          decoration: BoxDecoration(
-            color: cBoxColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              TextFormField(
-                obscureText: obscureTextInput,
-                controller: passwordController,
-                style: const TextStyle(color: cWhiteColor),
-                // obscureText: obscureTsextInput,
-                enableSuggestions: false,
-                autocorrect: false,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon: IconButton(
-                    iconSize: 18.0,
-                    icon: Icon(Icons.no_encryption_gmailerrorred_outlined),
-                    color: cGoldColor,
-                    onPressed: () {
-                      setState(() {
-                        obscureTextInput = !obscureTextInput;
-                      });
-                    },
-                  ),
-                  hintText: ' Enter your Password',
-                  hintStyle: TextStyle(color: cGreyColor),
-                  contentPadding: EdgeInsets.all(15),
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        const SizedBox(height: 100),
-        Center(
-          child: Container(
-            width: 330,
-            height: 47,
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Email', style: cWhiteTextStyle.copyWith(fontSize: 18)),
+          const SizedBox(height: 10),
+          Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Color(0xff373f85),
+              color: cBoxColor,
+              borderRadius: BorderRadius.circular(10),
             ),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.transparent, shadowColor: Colors.transparent),
-              onPressed: () {},
-              child: Text(
-                'LOG IN',
-                style: cWhiteTextStyle.copyWith(fontSize: 18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TextFormField(
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  style: const TextStyle(color: cWhiteColor),
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    suffixIcon:
+                        Icon(Icons.email_outlined, color: cGoldColor, size: 18),
+                    hintText: 'Masukan Email Anda',
+                    hintStyle: TextStyle(color: cGreyColor),
+                    contentPadding: EdgeInsets.all(15),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 22),
+          // Note : this is input type passowrd
+          Text('Password', style: cWhiteTextStyle.copyWith(fontSize: 18)),
+          const SizedBox(height: 10),
+
+          Container(
+            decoration: BoxDecoration(
+              color: cBoxColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TextFormField(
+                  controller: passwordController,
+                  obscureText: obscureTextInput,
+                  textInputAction: TextInputAction.done,
+
+                  style: const TextStyle(color: cWhiteColor),
+                  // obscureText: obscureTsextInput,
+                  enableSuggestions: false,
+                  autocorrect: false,
+
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    suffixIcon: IconButton(
+                      iconSize: 18.0,
+                      icon: Icon(Icons.no_encryption_gmailerrorred_outlined),
+                      color: cGoldColor,
+                      onPressed: () {
+                        setState(() {
+                          obscureTextInput = !obscureTextInput;
+                        });
+                      },
+                    ),
+                    hintText: 'Masukan Password Anda',
+                    hintStyle: TextStyle(color: cGreyColor),
+                    contentPadding: EdgeInsets.all(15),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 100),
+          Center(
+            child: Container(
+              width: 330,
+              height: 47,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                color: Color(0xff373f85),
+              ),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    shadowColor: Colors.transparent),
+                onPressed: signIn,
+                child: Text(
+                  'LOG IN',
+                  style: cWhiteTextStyle.copyWith(fontSize: 18),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   // Future signIn
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 }
