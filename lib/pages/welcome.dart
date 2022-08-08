@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_toz/pages/login.dart';
+import 'package:flutterfire_ui/auth.dart';
 import 'package:movie_toz/theme.dart';
 
 class Welcome extends StatelessWidget {
@@ -36,7 +36,11 @@ class Welcome extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return Login();
+                          return SignInScreen(
+                            providerConfigs: [
+                              EmailProviderConfiguration(),
+                            ],
+                          );
                         },
                       ),
                     );

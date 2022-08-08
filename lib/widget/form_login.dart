@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
+import 'package:movie_toz/pages/home.dart';
 import 'package:movie_toz/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -133,6 +135,7 @@ class _FormLoginState extends State<FormLogin> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+      Get.off(() => Home());
     } on FirebaseAuthException catch (e) {
       print(e);
     }

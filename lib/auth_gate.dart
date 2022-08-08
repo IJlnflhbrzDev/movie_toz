@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:movie_toz/introduction_screen.dart';
 import 'package:movie_toz/pages/home.dart';
 
 class AuthGate extends StatelessWidget {
-  const AuthGate({Key? key}) : super(key: key);
+  AuthGate({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +13,16 @@ class AuthGate extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       initialData: FirebaseAuth.instance.currentUser,
       builder: (context, snapshot) {
-        // User is not signed in
-        if (!snapshot.hasData) {
-          return SignInScreen(
-            providerConfigs: [
-              EmailProviderConfiguration(),
-            ],
-          );
+        try {
+          if (snapshot.hasData) {
+            return Home();
+          }
+        } on FirebaseAuthException catch (e) {
+          print('Failed with error code: ${e.code}');
+          print(e.message);
         }
 
-        // Render your application if authenticated
-        return Home();
+        return IntroductionScreenMovies();
       },
     );
   }

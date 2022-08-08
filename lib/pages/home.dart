@@ -1,37 +1,70 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie_toz/theme.dart';
+import 'package:get/get.dart';
+import 'package:movie_toz/introduction_screen.dart';
+import 'package:movie_toz/pages/profile.dart';
 import 'package:movie_toz/widget/PopularMovieUI.dart';
 import 'package:movie_toz/widget/UpcommingMovieUI.dart';
 import 'package:movie_toz/widget/judul.dart';
 import 'package:movie_toz/widget/slide_img.dart';
+import 'package:movie_toz/theme.dart';
 
 class Home extends StatelessWidget {
-  Home({Key? key, this.email}) : super(key: key);
-  final String? email;
+  Home({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    var users = FirebaseAuth.instance.currentUser;
-    print(users);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: cNavColor,
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
+        leading: Transform.rotate(
+          angle: -math.pi / 1,
+          child: IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: Text('Logout?'),
+                      content: Text('Apakah anda benar ingin melakukannya?'),
+                      actions: [
+                        TextButton(
+                          child: Text('Yes'),
+                          onPressed: () {
+                            _signOut();
+                            Navigator.of(context).pushAndRemoveUntil(
+                                new MaterialPageRoute(
+                                    builder: (context) =>
+                                        new IntroductionScreenMovies()),
+                                (route) => false);
+                            print('Success Logout route in home code ');
+                          },
+                        ),
+                        TextButton(
+                          child: Text('No'),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ],
+                    )),
+          ),
         ),
         title: Center(
           child: Text(
-            'MOVIE TOZ, $email',
+            'MOVIE TOZ',
           ),
         ),
         actions: <Widget>[
-          Container(
-            padding: const EdgeInsets.only(right: 15.0),
-            child: const CircleAvatar(
-              backgroundColor: Colors.transparent,
-              backgroundImage: AssetImage('assets/movielogo.png'),
+          InkWell(
+            onTap: () {
+              Get.to(() => MyProfile());
+            },
+            child: Container(
+              padding: const EdgeInsets.only(right: 15.0),
+              child: const CircleAvatar(
+                backgroundColor: Colors.transparent,
+                backgroundImage: AssetImage('assets/profile.png'),
+              ),
             ),
           )
         ],
@@ -42,10 +75,6 @@ class Home extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
-              ElevatedButton(
-                onPressed: _signOut,
-                child: Text('Sign Out'),
-              ),
               Container(
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -76,6 +105,10 @@ class Home extends StatelessWidget {
   }
 
   Future<void> _signOut() async {
-    await FirebaseAuth.instance.signOut();
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      print('futurue signout catch $e');
+    }
   }
 }
