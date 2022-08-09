@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:movie_toz/pages/login.dart';
-import 'package:movie_toz/pages/welcome.dart';
 import 'package:movie_toz/theme.dart';
 import 'package:lottie/lottie.dart';
 

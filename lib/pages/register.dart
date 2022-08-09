@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_toz/pages/login.dart';
 import 'package:movie_toz/theme.dart';
 
 import 'home.dart';
@@ -86,7 +87,7 @@ class RegisterPage extends StatelessWidget {
                                     color: Colors.white, fontSize: 16)),
                             TextButton(
                               onPressed: () {
-                                Get.to(RegisterPage());
+                                Get.to(Login());
                               },
                               child: Text(
                                 'Login',

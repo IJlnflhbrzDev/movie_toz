@@ -46,15 +46,20 @@ class Login extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Flexible(
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 57,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: cBoxColor),
-                              child: const Icon(
-                                Icons.face,
-                                color: cGoldColor,
+                            child: GestureDetector(
+                              onTap: () {
+                                print('HI');
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(18),
+                                width: MediaQuery.of(context).size.width,
+                                height: 57,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: cBoxColor),
+                                child: Image.asset(
+                                  'assets/icon-google.png',
+                                ),
                               ),
                             ),
                           ),
