@@ -9,7 +9,6 @@ class MyProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var user = FirebaseAuth.instance.currentUser!;
-    print(user);
     String nameUser = '${user.email}';
     var replaceName = nameUser.replaceAll('@gmail.com', '');
 

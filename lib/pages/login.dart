@@ -13,6 +13,18 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: cPrimaryColor,
+          elevation: 0.0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context),
+          ),
+          title: Text(
+            'Login',
+            style: cWhiteTextStyle.copyWith(fontSize: 24),
+          ),
+        ),
         backgroundColor: cPrimaryColor,
         body: SafeArea(
           bottom: false,
@@ -20,26 +32,16 @@ class Login extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.only(top: 61, left: 22, right: 22),
+                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        child: Row(
-                          children: [
-                            Text(
-                              'Login',
-                              style: cWhiteTextStyle.copyWith(fontSize: 24),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 44),
                       Text(
-                        'Sign up with one of following options',
+                        'Log in with one of following options',
                         style: cGreyTextStyle.copyWith(fontSize: 13),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 42),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -51,7 +53,7 @@ class Login extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                   color: cBoxColor),
                               child: const Icon(
-                                Icons.android,
+                                Icons.face,
                                 color: cGoldColor,
                               ),
                             ),
@@ -77,6 +79,25 @@ class Login extends StatelessWidget {
                       // NOTE: FormLogin
                       const SizedBox(height: 10),
                       const FormLogin(),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Don’t have an account?',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16)),
+                            TextButton(
+                              onPressed: () {
+                                Get.to(RegisterPage());
+                              },
+                              child: Text(
+                                'Sign up',
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 16,
+                                    decoration: TextDecoration.underline),
+                              ),
+                            )
+                          ]),
                     ],
                   ),
                 ),
@@ -188,27 +209,11 @@ class _FormLoginState extends State<FormLogin> {
               ],
             ),
           ),
-          Row(children: [
-            Text('Belum Punya Akun?',
-                style: TextStyle(color: Colors.white, fontSize: 16)),
-            TextButton(
-              onPressed: () {
-                Get.to(RegisterPage());
-              },
-              child: Text(
-                'Daftar',
-                style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
-                    decoration: TextDecoration.underline),
-              ),
-            )
-          ]),
 
           const SizedBox(height: 100),
           Center(
             child: Container(
-              width: 330,
+              width: Get.width,
               height: 47,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),

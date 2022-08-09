@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_toz/pages/login.dart';
-import 'package:movie_toz/pages/register.dart';
 import 'package:movie_toz/theme.dart';
 
 import 'home.dart';
@@ -14,6 +12,18 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: cPrimaryColor,
+          elevation: 0.0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context),
+          ),
+          title: Text(
+            'Sign up',
+            style: cWhiteTextStyle.copyWith(fontSize: 24),
+          ),
+        ),
         backgroundColor: cPrimaryColor,
         body: SafeArea(
           bottom: false,
@@ -25,22 +35,12 @@ class RegisterPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        child: Row(
-                          children: [
-                            Text(
-                              'Register',
-                              style: cWhiteTextStyle.copyWith(fontSize: 24),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 44),
                       Text(
                         'Sign up with one of following options',
                         style: cGreyTextStyle.copyWith(fontSize: 13),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 42),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -78,6 +78,25 @@ class RegisterPage extends StatelessWidget {
                       // NOTE: FormLogin
                       const SizedBox(height: 10),
                       const FormLogin(),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Already have an account?',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16)),
+                            TextButton(
+                              onPressed: () {
+                                Get.to(RegisterPage());
+                              },
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 16,
+                                    decoration: TextDecoration.underline),
+                              ),
+                            )
+                          ]),
                     ],
                   ),
                 ),
@@ -189,27 +208,11 @@ class _FormLoginState extends State<FormLogin> {
               ],
             ),
           ),
-          Row(children: [
-            Text('Sudah Punya Akun?',
-                style: TextStyle(color: Colors.white, fontSize: 16)),
-            TextButton(
-              onPressed: () {
-                Get.back();
-              },
-              child: Text(
-                'Login',
-                style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
-                    decoration: TextDecoration.underline),
-              ),
-            )
-          ]),
 
           const SizedBox(height: 100),
           Center(
             child: Container(
-              width: 330,
+              width: Get.width,
               height: 47,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
@@ -221,7 +224,7 @@ class _FormLoginState extends State<FormLogin> {
                     shadowColor: Colors.transparent),
                 onPressed: signUp,
                 child: Text(
-                  'LOG IN',
+                  'Create Account',
                   style: cWhiteTextStyle.copyWith(fontSize: 18),
                 ),
               ),
