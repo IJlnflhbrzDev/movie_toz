@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_toz/pages/login.dart';
 import 'package:movie_toz/pages/register.dart';
 import 'package:movie_toz/theme.dart';
 
 import 'home.dart';
 
-class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class Login extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              'Login',
+                              'Register',
                               style: cWhiteTextStyle.copyWith(fontSize: 24),
                             ),
                           ],
@@ -189,14 +190,14 @@ class _FormLoginState extends State<FormLogin> {
             ),
           ),
           Row(children: [
-            Text('Belum Punya Akun?',
+            Text('Sudah Punya Akun?',
                 style: TextStyle(color: Colors.white, fontSize: 16)),
             TextButton(
               onPressed: () {
-                Get.to(RegisterPage());
+                Get.back();
               },
               child: Text(
-                'Daftar',
+                'Login',
                 style: TextStyle(
                     color: Colors.blue,
                     fontSize: 16,
@@ -218,7 +219,7 @@ class _FormLoginState extends State<FormLogin> {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.transparent,
                     shadowColor: Colors.transparent),
-                onPressed: signIn,
+                onPressed: signUp,
                 child: Text(
                   'LOG IN',
                   style: cWhiteTextStyle.copyWith(fontSize: 18),
@@ -232,25 +233,53 @@ class _FormLoginState extends State<FormLogin> {
   }
 
   // Future signIn
-  Future signIn() async {
+  Future signUp() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
       Get.off(() => Home());
     } on FirebaseAuthException catch (e) {
-      print(e.message);
+      if (e.code == 'weak-password') {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('weak-password'),
+            content: Text('Kata sandi yang diberikan terlalu lemah'),
+            actions: [
+              TextButton(
+                child: const Text('Close'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      } else if (e.code == 'email-already-in-use') {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('email-already-in-use'),
+            content: Text('Email sudah di gunakan'),
+            actions: [
+              TextButton(
+                child: const Text('Close'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('An error occured'),
-          content: Text(
-            e.message.toString(),
-
-            /// <-------------- HERE
-          ),
+          title: const Text('ERROR'),
+          content: Text('$e'),
           actions: [
             TextButton(
               child: const Text('Close'),

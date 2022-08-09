@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_toz/introduction_screen.dart';
 import 'package:movie_toz/pages/home.dart';
+import 'package:movie_toz/pages/welcome.dart';
 
 class AuthGate extends StatelessWidget {
   AuthGate({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class AuthGate extends StatelessWidget {
           print(e.message);
         }
 
-        return IntroductionScreenMovies();
+        return Welcome();
       },
     );
   }
