@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:movie_toz/theme.dart';
+import 'package:movie_toz/pages/login.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -36,11 +37,12 @@ class Welcome extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return SignInScreen(
-                            providerConfigs: [
-                              EmailProviderConfiguration(),
-                            ],
-                          );
+                          // return SignInScreen(
+                          //   providerConfigs: [
+                          //     EmailProviderConfiguration(),
+                          //   ],
+                          // );
+                          return Login();
                         },
                       ),
                     );

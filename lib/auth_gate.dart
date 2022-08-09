@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
 import 'package:movie_toz/introduction_screen.dart';
 import 'package:movie_toz/pages/home.dart';
 
