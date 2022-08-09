@@ -135,9 +135,29 @@ class _FormLoginState extends State<FormLogin> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+
       Get.off(() => Home());
     } on FirebaseAuthException catch (e) {
-      print(e);
+      print(e.message);
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('An error occured'),
+          content: Text(
+            e.message.toString(),
+
+            /// <-------------- HERE
+          ),
+          actions: [
+            TextButton(
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      );
     }
   }
 }
