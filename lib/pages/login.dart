@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_toz/auth_services.dart';
 import 'package:movie_toz/pages/register.dart';
 import 'package:movie_toz/theme.dart';
 
@@ -48,7 +49,8 @@ class Login extends StatelessWidget {
                           Flexible(
                             child: GestureDetector(
                               onTap: () {
-                                print('HI');
+                                AuthService().signInWithGoogle();
+                                print('runnn');
                               },
                               child: Container(
                                 padding: EdgeInsets.all(18),
