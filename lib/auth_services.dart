@@ -2,23 +2,37 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
-  signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser =
-        await GoogleSignIn(scopes: <String>['email']).signIn();
+  // Future signIn() async {
+  //   try {
+  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //       email: emailController.text.trim(),
+  //       password: passwordController.text.trim(),
+  //     );
 
-    // obtain the auth details from the request
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser!.authentication;
+  //     Get.off(() => Home());
+  //   } on FirebaseAuthException catch (e) {
+  //     print(e.message);
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) => AlertDialog(
+  //         title: const Text('An error occured'),
+  //         content: Text(
+  //           e.message.toString(),
 
-    // create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    // once signed in , return the user credential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
-  }
+  //           /// <-------------- HERE
+  //         ),
+  //         actions: [
+  //           TextButton(
+  //             child: const Text('Close'),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //         ],
+  //       ),
+  //     );
+  //   }
+  // }
 
   signOut() {
     FirebaseAuth.instance.signOut();

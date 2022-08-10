@@ -46,15 +46,18 @@ class RegisterPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Flexible(
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 57,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: cBoxColor),
-                              child: const Icon(
-                                Icons.android,
-                                color: cGoldColor,
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 57,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: cBoxColor),
+                                child: const Icon(
+                                  Icons.android,
+                                  color: cGoldColor,
+                                ),
                               ),
                             ),
                           ),

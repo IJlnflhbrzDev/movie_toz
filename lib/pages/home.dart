@@ -10,6 +10,7 @@ import 'package:movie_toz/widget/judul.dart';
 import 'package:movie_toz/widget/slide_img.dart';
 import 'package:movie_toz/theme.dart';
 
+
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
