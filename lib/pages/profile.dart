@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:movie_toz/theme.dart';
 
 class MyProfile extends StatelessWidget {
-  const MyProfile({Key? key}) : super(key: key);
+  MyProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var user = FirebaseAuth.instance.currentUser!;
-    String nameUser = '${user.email}';
-    var replaceName = nameUser.replaceAll('@gmail.com', '');
 
+    final name = user.displayName;
+    final email = user.email;
+    final photoUrl = user.photoURL;
     return Scaffold(
         backgroundColor: cPrimaryColor,
         appBar: AppBar(
@@ -39,15 +40,12 @@ class MyProfile extends StatelessWidget {
                     width: 100,
                     height: 100,
                     child: CircleAvatar(
-                      child: Icon(
-                        Icons.account_circle,
-                        size: 100,
-                      ),
+                      backgroundImage: NetworkImage('$photoUrl'),
                     ),
                   ),
                   const SizedBox(height: 21),
                   Text(
-                    replaceName,
+                    '$name',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
@@ -56,7 +54,7 @@ class MyProfile extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    nameUser,
+                    '$email',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w400,
