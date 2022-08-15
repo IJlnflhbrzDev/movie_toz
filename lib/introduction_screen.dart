@@ -27,7 +27,7 @@ class IntroductionScreenMovies extends StatelessWidget {
       ),
       onDone: () {
         // Get.to(Welcome());
-        Navigator.push(
+        Navigator.pop(
           context,
           MaterialPageRoute(
             builder: (context) {

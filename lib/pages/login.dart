@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_toz/pages/register.dart';
 import 'package:movie_toz/theme.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'home.dart';
 
@@ -47,7 +48,7 @@ class Login extends StatelessWidget {
                         children: [
                           Flexible(
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: signInWithGoogle,
                               child: Container(
                                 padding: EdgeInsets.all(18),
                                 width: MediaQuery.of(context).size.width,
@@ -110,6 +111,25 @@ class Login extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  // SIGN IN SOCIAL
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
 
