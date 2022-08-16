@@ -8,11 +8,14 @@ class MyProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var user = FirebaseAuth.instance.currentUser!;
+    var user = FirebaseAuth?.instance.currentUser!;
 
     final name = user.displayName;
     final email = user.email;
     final photoUrl = user.photoURL;
+
+    final nameNotNull = name != null ? name : email;
+    final replaceNameGmail = nameNotNull?.replaceAll('@gmail.com', '');
     return Scaffold(
         backgroundColor: cPrimaryColor,
         appBar: AppBar(
@@ -45,7 +48,7 @@ class MyProfile extends StatelessWidget {
                   ),
                   const SizedBox(height: 21),
                   Text(
-                    '$name',
+                    '$replaceNameGmail',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
